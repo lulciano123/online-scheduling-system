@@ -111,8 +111,8 @@ EXECUTE FUNCTION calcular_fim_agendamento();
 -- ==============================================================================
 
 INSERT INTO PROFISSIONAL (nome, email, senha, nome_negocio, telefone_contato) VALUES
-('Ana Silva', 'ana@beauty.com', 'hash123', 'Ana Beauty', '51999999999'),
-('Mestre Java', 'java@dev.com', 'hash456', 'Java Cuts', '53999990000');
+('Carlos Oliveira', 'carlos@studio.com', 'hash123', 'Carlos Studio Hair', '51999999999'),
+('Fernanda Costa', 'fernanda@consulting.com', 'hash456', 'FC Consultoria Tech', '53999990000');
 
 INSERT INTO CATEGORIA_SERVICO (nome_categoria, descricao) VALUES 
 ('Cabelo', 'Cortes e tratamentos capilares'), 
@@ -120,12 +120,12 @@ INSERT INTO CATEGORIA_SERVICO (nome_categoria, descricao) VALUES
 ('Consultoria', 'Apoio técnico especializado');
 
 INSERT INTO CLIENTE (nome, email, telefone) VALUES 
-('Luciano Aluno', 'luciano@ufpel.edu.br', '53999991111'),
-('João Exemplo', 'joao@teste.com', '53988882222'),
-('Maria Silva', 'maria@gmail.com', '53977773333');
+('Roberto Almeida', 'roberto@email.com', '53999991111'),
+('Juliana Martins', 'juliana@teste.com', '53988882222'),
+('Marcos Souza', 'marcos@gmail.com', '53977773333');
 
 INSERT INTO SERVICO (nome_servico, descricao, duracao_minutos, preco, id_profissional, id_categoria) VALUES
-('Corte Moderno', 'Corte com degradê', 45, 60.00, 2, 1), 
+('Corte Moderno', 'Corte com degradê', 45, 60.00, 1, 1), 
 ('Consultoria BD', 'Otimização de banco de dados', 60, 200.00, 2, 3),
 ('Hidratação', 'Hidratação profunda', 60, 120.00, 1, 1); 
 
@@ -134,12 +134,12 @@ INSERT INTO JORNADA_DE_TRABALHO (dia_da_semana, hora_inicio, hora_fim, id_profis
 ('Segunda', '09:00', '18:00', 2),
 ('Terça', '09:00', '18:00', 2);
 
--- Inserindo Agendamentos (sem data_hora_fim para testar o Trigger)
+-- Inserindo Agendamentos (Note que omitimos data_hora_fim para testar o Trigger)
 INSERT INTO AGENDAMENTO (data_hora_inicio, id_cliente, id_servico) VALUES 
-('2026-02-21 14:00:00', 1, 2), -- Luciano fará Consultoria BD com o Mestre Java (Duração 60m)
-('2026-02-22 10:00:00', 2, 1), -- João fará Corte Moderno com o Mestre Java (Duração 45m)
-('2026-02-22 15:00:00', 3, 3), -- Maria fará Hidratação com a Ana Silva (Duração 60m)
-('2026-02-25 09:00:00', 1, 1); -- Luciano fará Corte Moderno com o Mestre Java (Duração 45m)
+('2026-02-21 14:00:00', 1, 2), -- Roberto fará Consultoria BD com Fernanda (Duração 60m)
+('2026-02-22 10:00:00', 2, 1), -- Juliana fará Corte Moderno com Carlos (Duração 45m)
+('2026-02-22 15:00:00', 3, 3), -- Marcos fará Hidratação com Carlos (Duração 60m)
+('2026-02-25 09:00:00', 1, 1); -- Roberto fará Corte Moderno com Carlos (Duração 45m)
 
 
 -- ==============================================================================
@@ -208,4 +208,4 @@ SELECT
     nome, 
     email 
 FROM CLIENTE 
-WHERE nome ILIKE '%Luciano%';
+WHERE nome ILIKE '%Roberto%';
