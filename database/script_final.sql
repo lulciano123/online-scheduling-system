@@ -134,7 +134,7 @@ INSERT INTO JORNADA_DE_TRABALHO (dia_da_semana, hora_inicio, hora_fim, id_profis
 ('Segunda', '09:00', '18:00', 2),
 ('Terça', '09:00', '18:00', 2);
 
--- Inserindo Agendamentos (Note que omitimos data_hora_fim para testar o Trigger)
+-- Inserindo Agendamentos (sem data_hora_fim para testar o Trigger)
 INSERT INTO AGENDAMENTO (data_hora_inicio, id_cliente, id_servico) VALUES 
 ('2026-02-21 14:00:00', 1, 2), -- Luciano fará Consultoria BD com o Mestre Java (Duração 60m)
 ('2026-02-22 10:00:00', 2, 1), -- João fará Corte Moderno com o Mestre Java (Duração 45m)
