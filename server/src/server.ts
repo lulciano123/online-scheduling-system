@@ -42,6 +42,41 @@ app.post('/api/profissionais', async (req, res) => {
     }
 });
 
+// Rota DELETE: EXCLUIR (Apaga um profissional pelo ID)
+app.delete('/api/profissionais/:id', async (req, res) => {
+    // Pegamos o ID que vem na URL (ex: /api/profissionais/3)
+    const { id } = req.params;
+    
+    try {
+        // Executamos o DELETE no banco de dados
+        await query('DELETE FROM PROFISSIONAL WHERE id_profissional = $1', [id]);
+        res.json({ message: 'Profissional excluído com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao excluir:', error);
+        res.status(500).json({ error: 'Erro ao excluir profissional' });
+    }
+});
+
+// Rota PUT: UPDATE (Atualiza um profissional existente)
+app.put('/api/profissionais/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nome, email, nome_negocio, telefone_contato } = req.body;
+    
+    try {
+        // Executamos o UPDATE no banco de dados
+        await query(
+            `UPDATE PROFISSIONAL 
+             SET nome = $1, email = $2, nome_negocio = $3, telefone_contato = $4 
+             WHERE id_profissional = $5`,
+            [nome, email, nome_negocio, telefone_contato, id]
+        );
+        res.json({ message: 'Profissional atualizado com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao atualizar:', error);
+        res.status(500).json({ error: 'Erro ao atualizar profissional' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`⚡ API rodando na porta http://localhost:${port}`);
 });
